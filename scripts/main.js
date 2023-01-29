@@ -1,31 +1,39 @@
 (function (){
     function DisplayButton(){
         let randomButton = document.getElementById("RandomButton")
-        randomButton.addEventListener("click", function(){
-            Location.href = './webd6201-23/webd6201-in-class-demo/projects.html'
+        randomButton.addEventListener("click", function() {
+            Location.href = "/webd6201-in-class-demo/projects.html"
         })
 
         let mainContent = document.getElementsByTagName("main")[0]
-        console.setAttribute("class", "container")
+        mainContent.setAttribute("class", "container")
 
-        let mainParagraph = documentcreateElement("p")
-        mainParagraph.serAttribute("id", "MainParagraph")
+        //another way to access body
+        documentBody = document.body
+        
+        let mainParagraph = document.createElement("p")
+        mainParagraph.setAttribute("id", "MainParagraph")
         mainParagraph.setAttribute("class", "mt- 3 container")
         
         //concatenation - '1' + '2' + '3'
         //interpolation - `${var}`
         let firstString = "this is a" 
-        let secondString = `${firstString} main paragraph that we added through javascript`
+        let secondString = `${ firstString } main paragraph that we added through javascript and this is also on Github Pages`
         mainParagraph.textContent = secondString
 
+        /**
+         * textContent - changes text node
+         * innerHTML - overwrites anything in the innerHTML of that element
+         */
+
         //add after(after)
-        mainContent.appendchild(mainParagraph)
+        mainContent.appendChild(mainParagraph)
 
         //add before(before)
         //mainContent.before(mainParagraph)
 
         //delete element
-        //mainContent.before(mainParagraph)
+        //document.getElementById("AboutUsButton").remove()
         
         //documentBody.innerHTML= `
         //<div class="container">
@@ -35,21 +43,14 @@
         //`
         
     }
-
     function Start(){
         console.log("App started!")
 
-        if(document.title ===''){
-
-        } else if (document.title === 'sads'){
-
-        }
-
         switch(document.title){
-            case"Home -WEBD6201 Demo":
+            case"Home - WEBD6201 Demo":
                 DisplayButton()
                 break
-            case "Projects - WEBD6201 Demo":
+            case"Projects - WEBD6201 Demo":
                 DisplayButton()
                 break
 
