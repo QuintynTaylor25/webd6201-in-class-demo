@@ -41,6 +41,9 @@
         //    <p class="mt-5 lead"> and... what do you think of this method?
         //</p></div> 
         //`
+
+        let Quintyn = new Contact("Quintyn","6478393531","GG@dcmail.ca")
+        console.log(Quintyn.toString())
         
     }
     function Start(){
