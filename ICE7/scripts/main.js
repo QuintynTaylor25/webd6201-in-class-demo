@@ -1,4 +1,23 @@
 (function (){
+    function DisplayNavBar() {
+        // AJAX
+        // instantiate the XHR Object
+        let XHR = new XMLHttpRequest()
+
+        // add event listener for readystatechange
+        XHR.addEventListener("readystatechange", () => {
+            if (XHR.readyState === 4 && XHR.status === 200) {
+                $('#navigationBar').html(XHR.responseText)
+            }
+        })
+
+        // connect and get data
+        XHR.open("GET", "./static/header.html")
+
+        // send request to server to await response
+        XHR.send()
+    }
+
     function DisplayHome(){
         $("#RandomButton").on("click", function() {
             location.href = 'contact.html'
@@ -22,7 +41,37 @@
         }
     }
 
+    function ValidateInput(inputFieldID, regularExpression, exception) {
+        let messageArea = $('#messageArea').hide()
+
+        $('#' + inputFieldID).on("blur", function() {
+            let inputText = $(this).val()
+
+            if (!regularExpression.test(inputText)) {
+                // failure to match full name with regex
+
+                $(this).trigger("focus").trigger("select")
+
+                messageArea.addClass("alert alert-danger").text(exception).show()
+            } else {
+                // success in matching full name with regex
+
+                messageArea.removeAttr("class").hide()
+            }
+        })
+    }
     
+    function ContactFormValidate() {
+        let emailAddressPattern = /^[\w-\.]+@([\w-]+\.)+[\w-][\D]{2,10}$/g
+        let contactNumberPattern = /^([0-9]{10})$/g
+        let fullNamePattern = /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,25}))*(\s|-|,)*([A-Z][a-z]{1,25})*$/g
+
+
+        ValidateInput("fullName", fullNamePattern, "Please enter a valid Full name which means a capitalized first name and capitalized last name")
+        ValidateInput("emailAddress", emailAddressPattern, "Please enter a valid Email Address")
+        ValidateInput("contactNumber", contactNumberPattern, "Please enter a valid Contact Number")
+    }
+
     function DisplayContacts() {
         console.log("Contact Us Page")
 
@@ -155,6 +204,14 @@
     function DisplayReferences(){
         console.log("References Page")
     }
+
+    function DisplayLoginPage() {
+        console.log("Login Page")
+    }
+    
+    function DisplayRegisterPage() {
+        console.log("Registration Page")
+    }
     function Start(){
         console.log("App started!")
 
@@ -178,7 +235,12 @@
             case "Edit - WEBD6201 Demo":
                 DisplayEditPage()
                 break
-
+            case "Login - WEBD6201 Demo":
+                DisplayLoginPage()
+                break
+            case "Register - WEBD6201 Demo":
+                DisplayRegisterPage()
+                break
 
         }
     }
