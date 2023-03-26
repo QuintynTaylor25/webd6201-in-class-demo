@@ -77,7 +77,7 @@
     }
     function DisplayHome() {
         $("#RandomButton").on("click", function () {
-            location.href = '/contact';
+            LoadLink('contact');
         });
         let firstString = "This is a ";
         let secondString = `${firstString} main paragraph that we added through javascript and this is also on GitHub Pages`;
